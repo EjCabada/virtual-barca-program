@@ -16,6 +16,8 @@ public class BarcaBoard {
 	
 	public void setBoard() {
 		board[0][0].setOccupyingPiece(new MousePiece());
+		// Test move validation
+		// board[0][0].getOccupyingPiece().isValidMove(new Point(0,0), new Point(0,9));
 	}
 	
 	public String toString() {
