@@ -18,13 +18,15 @@ public class BarcaBoard {
 		board[0][0].setOccupyingPiece(new MousePiece());
 	}
 	
-	public void printBoard() {
+	public String toString() {
+		String string = "";
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
-				System.out.print(board[i][j]);
+				string = string + (board[i][j]);
 			}
-			System.out.print("\n");
+			string = string + "\n";
 		}	
+		return string;
 	}
 	
 
