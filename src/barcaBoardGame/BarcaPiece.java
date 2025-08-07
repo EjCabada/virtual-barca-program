@@ -1,5 +1,7 @@
 package barcaBoardGame;
 
+import java.awt.Point;
+
 public abstract class BarcaPiece {
 	public Point coordinate;
 	
