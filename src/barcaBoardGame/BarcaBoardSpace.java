@@ -16,6 +16,10 @@ public class BarcaBoardSpace {
 		occupyingPiece = piece;
 	}
 	
+	public BarcaPiece getOccupyingPiece() {
+		return occupyingPiece;
+	}
+	
 	public String toString(){
 		if(occupyingPiece == null) {
 			return " . ";
