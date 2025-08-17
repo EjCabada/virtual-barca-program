@@ -7,13 +7,21 @@ public class MousePiece extends BarcaPiece {
 	public MousePiece() {
 	}
 	
+	
 	@Override
+	/**
+	 * Answers the question of whether a move is valid according to the unique moving pattern of this piece
+	 * @param from the location of the piece intended to be moved
+	 * @param to the location of the space piece is intended to move to 
+	 */
 	public boolean isValidMove(Point from, Point to) {
-		if(to.x == from.x || to.y == from.y) {
-			System.out.println("Valid move!");
+		boolean sameColumn = to.x == from.x;
+		boolean sameRow = to.y == from.y;
+		
+		// Return true if has either the same column or same row but not both ('^' is the XOR operator)
+		if(sameColumn ^ sameRow) {
 			return true;
 		} else {
-			System.out.println("Not a valid move!");
 			return false;
 		}
 	}
