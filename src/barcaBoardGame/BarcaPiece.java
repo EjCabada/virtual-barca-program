@@ -5,21 +5,36 @@ import java.awt.Point;
 public abstract class BarcaPiece {
 	public Point coordinate;
 	
-	public abstract boolean isValidMove(Point from, Point to);
+	/**
+	 * Helper method that that provides one 
+	 * @param from the location of piece to be moved
+	 * @param to the location of space for piece to move to
+	 * @return true only if the movement is valid
+	 */
+	public boolean isValidMovement(Point from, Point to) {
+		if(	isValidMovePattern(from, to) && 
+			isWithinBounds(from, to)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public abstract String toString();
 	
+	protected abstract boolean isValidMovePattern(Point from, Point to);
+
 	/**
 	 * Determines if the move is valid for this piece
 	 * @param from the location of the piece intended to move
 	 * @param to the location of the destination of moved piece
 	 * @return true only if move satisfies the requirement of being within bounds
 	 */
-	public boolean isWithinBounds(Point from, Point to) {
+	protected boolean isWithinBounds(Point from, Point to) {
 		// TODO Remove hard-coded constants and base it on size of board array in board object
-		final int MAX_HORIZONTAL_SPACES = 10;
-		final int MAX_VERTICAL_SPACES = 10;
-		final int MIN_SPACES = 1;
+		final int MAX_HORIZONTAL_SPACES = 9;
+		final int MAX_VERTICAL_SPACES = 9;
+		final int MIN_SPACES = 0;
 		
 		// Computes truth value for each axis
 		boolean isWithinHorizontalBound = from.x <= MAX_HORIZONTAL_SPACES && from.x >= MIN_SPACES;

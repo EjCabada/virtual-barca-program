@@ -18,8 +18,27 @@ public class BarcaBoard {
 			}
 		}
 		board[0][0].setOccupyingPiece(new MousePiece());
-		// Test move validation
-		// board[0][0].getOccupyingPiece().isValidMove(new Point(0,0), new Point(0,9));
+		//TODO If movement is not valid, catch the exception using try catch block and ask for input again
+		movePiece(new Point(0,0), new Point(0,10));
+	}
+	
+	/**
+	 * Changes board state by removing piece from one space and adding it to another space
+	 * @param from location of space containing piece intended to be moved
+	 * @param to location of space that piece is intended to be moved to
+	 */
+	public void movePiece(Point from, Point to) {
+		BarcaBoardSpace fromBoardSpace = board[from.x][from.y];
+		BarcaBoardSpace toBoardSpace = board[to.x][to.y];
+		
+		BarcaPiece pieceToMove = fromBoardSpace.getOccupyingPiece();
+		if(	pieceToMove.isValidMovement(from, to)) {
+			fromBoardSpace.setOccupyingPiece(null);
+			toBoardSpace.setOccupyingPiece(pieceToMove);
+		} else {
+			System.out.println("Move was not valid!");
+		};
+		
 	}
 	
 	/**

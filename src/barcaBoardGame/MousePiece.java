@@ -14,7 +14,7 @@ public class MousePiece extends BarcaPiece {
 	 * @param from the location of the piece intended to be moved
 	 * @param to the location of the space piece is intended to move to 
 	 */
-	public boolean isValidMove(Point from, Point to) {
+	protected boolean isValidMovePattern(Point from, Point to) {
 		boolean sameColumn = to.x == from.x;
 		boolean sameRow = to.y == from.y;
 		
