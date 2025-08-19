@@ -41,9 +41,26 @@ public class BarcaBoard {
 		
 	}
 	
-	/**
-	 * Printing the board object will implicitly call this method
-	 */	
+	public Point[] findAdjacentSpaces(Point startingPoint) {
+		int startingX = startingPoint.x;
+		int startingY = startingPoint.y;
+		
+		Point rightOfStart = new Point(startingX++, startingY);
+		Point leftOfStart = new Point(startingX--, startingY);
+		Point topOfStart = new Point(startingX, startingY++);
+		Point bottomOfStart = new Point(startingX, startingY--);
+		
+		Point topRightOfStart = new Point(startingX++, startingY--);
+		Point topLeftOfStart = new Point(startingX--, startingY--);
+		Point bottomRightOfStart = new Point(startingX++, startingY++);
+		Point bottomLeftOfStart = new Point(startingX--, startingY++);
+		
+		return new Point[8];
+	}
+	
+/**
+ * Printing the board object will implicitly call this method
+ */	
 	public String toString() {
 		String string = "";
 		for(int i = 0; i < 10; i++) {
