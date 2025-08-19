@@ -1,5 +1,6 @@
 package barcaBoardGame;
 import java.awt.Point;
+import java.util.ArrayList;
 
 public class BarcaBoard {
 	public static BarcaBoardSpace[][] board = new BarcaBoardSpace[10][10];
@@ -41,7 +42,31 @@ public class BarcaBoard {
 		
 	}
 	
-	public Point[] findAdjacentSpaces(Point startingPoint) {
+	//TODO resolve duplicate definition of method isWithinBounds()
+	/**
+	 * Determines if the move is valid for this piece
+	 * @param to the location of the destination of moved piece
+	 * @return true only if move satisfies the requirement of being within bounds
+	 */
+	protected boolean isWithinBounds(Point to) {
+		// TODO Remove hard-coded constants and base it on size of board array in board object
+		final int MAX_HORIZONTAL_SPACES = 9;
+		final int MAX_VERTICAL_SPACES = 9;
+		final int MIN_SPACES = 0;
+		
+		// Computes truth value for each axis
+		boolean isWithinHorizontalBound = to.x <= MAX_HORIZONTAL_SPACES && to.x >= MIN_SPACES;
+		boolean isWithinVerticalBound = to.y <= MAX_VERTICAL_SPACES && to.y >= MIN_SPACES;		
+		
+		// If both conditions are met, then returns true, otherwise false
+		if(isWithinHorizontalBound && isWithinVerticalBound) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public ArrayList<Point> findAdjacentSpaces(Point startingPoint) {
 		int startingX = startingPoint.x;
 		int startingY = startingPoint.y;
 		
@@ -54,8 +79,28 @@ public class BarcaBoard {
 		Point topLeftOfStart = new Point(startingX--, startingY--);
 		Point bottomRightOfStart = new Point(startingX++, startingY++);
 		Point bottomLeftOfStart = new Point(startingX--, startingY++);
+				
+		final int TOTAL_POSSIBLE_ADJACENT = 8;
+		Point[] arr = new Point[TOTAL_POSSIBLE_ADJACENT];
 		
-		return new Point[8];
+		arr[0] = rightOfStart;
+		arr[1] = leftOfStart;
+		arr[2] = topOfStart;
+		arr[3] = bottomOfStart;
+		arr[4] = topRightOfStart;
+		arr[5] = topLeftOfStart;
+		arr[6] = bottomRightOfStart;
+		arr[7] = bottomLeftOfStart;
+		
+		ArrayList<Point> allPossibleAdjacentSpaces = new ArrayList<Point>();
+		
+		for(int i = 0; i < TOTAL_POSSIBLE_ADJACENT;  i++) {
+			if(isWithinBounds(arr[i])) {
+				allPossibleAdjacentSpaces.add(arr[i]);
+			};
+		}
+		
+		return allPossibleAdjacentSpaces;
 	}
 	
 /**
