@@ -4,9 +4,24 @@ import java.awt.Point;
 
 public class MousePiece extends BarcaPiece {
 	
-	public MousePiece() {
+	private String fearFactor = "lion";
+	
+	public MousePiece(String givenName) {
+		this.name = givenName;
 	}
 	
+	/**
+	 * Test if piece is afraid of other piece
+	 * @param possibleThreat an adjacent piece that may pose a threat to your piece
+	 * @return The answer to the question, is this piece afraid of possibleThreat
+	 */
+	public boolean isAfraidOf(BarcaPiece possibleThreat) {
+		if(possibleThreat.getName() == fearFactor) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	@Override
 	/**
@@ -31,4 +46,5 @@ public class MousePiece extends BarcaPiece {
 		// Temporary symbol: used king to represent mouse
 		return " \u2654 ";
 	}
+
 }

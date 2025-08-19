@@ -5,6 +5,12 @@ import java.awt.Point;
 public abstract class BarcaPiece {
 	public Point coordinate;
 	
+	protected String name;
+	
+	public String getName() {
+		return name;
+	}
+	
 	/**
 	 * Helper method that that provides one 
 	 * @param from the location of piece to be moved
