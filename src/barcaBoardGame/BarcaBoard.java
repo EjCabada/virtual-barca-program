@@ -3,11 +3,19 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class BarcaBoard {
-	public static BarcaBoardSpace[][] board = new BarcaBoardSpace[10][10];
+	private static BarcaBoardSpace[][] board = null;
 	
-	public BarcaBoard() {
-		setBoard();
+	private BarcaBoard() {
+        board = new BarcaBoardSpace[10][10];
+        setBoard();
 	}
+
+    public static BarcaBoardSpace[][] getInstance(){
+        if(BarcaBoard.board == null){
+            BarcaBoard = new BarcaBoard();
+            setBoard();
+        }
+    }
 	
 	/**
 	 * Helper method to set the board to initial state
@@ -15,12 +23,13 @@ public class BarcaBoard {
 	public void setBoard() {
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
-				board[i][j] = new BarcaBoardSpace(new Point(i,j), false);
+				board[i][j] = new BarcaBoardSpace(i,j);
 			}
 		}
-		board[0][0].setOccupyingPiece(new MousePiece());
+        //TODO Make "mouse" into a const
+		board[0][0].setOccupyingPiece(new MousePiece("mouse"));
 		//TODO If movement is not valid, catch the exception using try catch block and ask for input again
-		movePiece(new Point(0,0), new Point(0,10));
+		movePiece(new Point(0,0), new Point(0,9));
 	}
 	
 	/**
@@ -66,42 +75,7 @@ public class BarcaBoard {
 		}
 	}
 	
-	public ArrayList<Point> findAdjacentSpaces(Point startingPoint) {
-		int startingX = startingPoint.x;
-		int startingY = startingPoint.y;
-		
-		Point rightOfStart = new Point(startingX++, startingY);
-		Point leftOfStart = new Point(startingX--, startingY);
-		Point topOfStart = new Point(startingX, startingY++);
-		Point bottomOfStart = new Point(startingX, startingY--);
-		
-		Point topRightOfStart = new Point(startingX++, startingY--);
-		Point topLeftOfStart = new Point(startingX--, startingY--);
-		Point bottomRightOfStart = new Point(startingX++, startingY++);
-		Point bottomLeftOfStart = new Point(startingX--, startingY++);
-				
-		final int TOTAL_POSSIBLE_ADJACENT = 8;
-		Point[] arr = new Point[TOTAL_POSSIBLE_ADJACENT];
-		
-		arr[0] = rightOfStart;
-		arr[1] = leftOfStart;
-		arr[2] = topOfStart;
-		arr[3] = bottomOfStart;
-		arr[4] = topRightOfStart;
-		arr[5] = topLeftOfStart;
-		arr[6] = bottomRightOfStart;
-		arr[7] = bottomLeftOfStart;
-		
-		ArrayList<Point> allPossibleAdjacentSpaces = new ArrayList<Point>();
-		
-		for(int i = 0; i < TOTAL_POSSIBLE_ADJACENT;  i++) {
-			if(isWithinBounds(arr[i])) {
-				allPossibleAdjacentSpaces.add(arr[i]);
-			};
-		}
-		
-		return allPossibleAdjacentSpaces;
-	}
+
 	
 /**
  * Printing the board object will implicitly call this method
