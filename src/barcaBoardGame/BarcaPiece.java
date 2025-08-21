@@ -4,11 +4,16 @@ import java.awt.Point;
 
 public abstract class BarcaPiece {
 	public Point coordinate;
-    protected String fearFactor;
 
-	protected String name;
-	
-	public String getName() {
+    protected char fearFactor;
+	protected char name;
+
+    protected final char MOUSE = 'M';
+    protected final char LION = 'L';
+    protected final char ELEPHANT = 'E';
+
+
+	public char getName() {
 		return name;
 	}
 	
@@ -28,7 +33,12 @@ public abstract class BarcaPiece {
 	}
 	
 	public abstract String toString();
-	
+
+    /**
+     * Answers the question of whether a move is valid according to the unique moving pattern of this piece
+     * @param from the location of the piece intended to be moved
+     * @param to the location of the space piece is intended to move to
+     */
 	protected abstract boolean isValidMovePattern(Point from, Point to);
 
 	/**

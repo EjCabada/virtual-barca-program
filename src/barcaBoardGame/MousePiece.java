@@ -4,9 +4,9 @@ import java.awt.Point;
 
 public class MousePiece extends BarcaPiece {
 	
-	public MousePiece(String name) {
-		this.name = name;
-        fearFactor = "lion";
+	public MousePiece() {
+		name = super.MOUSE;
+        fearFactor = super.LION;
 	}
 	
 	@Override
