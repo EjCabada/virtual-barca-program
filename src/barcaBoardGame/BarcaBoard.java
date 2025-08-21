@@ -19,9 +19,10 @@ public class BarcaBoard {
 				board[i][j] = new BarcaBoardSpace(new Point(i,j), false);
 			}
 		}
-		board[0][0].setOccupyingPiece(new MousePiece("mouse"));
+		board[4][4].setOccupyingPiece(new MousePiece());
+		board[4][5].setOccupyingPiece(new LionPiece());
 		//TODO If movement is not valid, catch the exception using try catch block and ask for input again
-		movePiece(new Point(0,0), new Point(0,9));
+//		movePiece(new Point(0,0), new Point(0,9));
 	}
 	
 	/**
