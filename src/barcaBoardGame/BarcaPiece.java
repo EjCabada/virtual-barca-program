@@ -4,7 +4,8 @@ import java.awt.Point;
 
 public abstract class BarcaPiece {
 	public Point coordinate;
-	
+    protected String fearFactor;
+
 	protected String name;
 	
 	public String getName() {
@@ -53,4 +54,17 @@ public abstract class BarcaPiece {
 			return false;
 		}
 	}
+
+    /**
+     * Test if piece is afraid of other piece
+     * @param possibleThreat an adjacent piece that may pose a threat to your piece
+     * @return The answer to the question, is this piece afraid of possibleThreat
+     */
+    public boolean isAfraidOf(BarcaPiece possibleThreat) {
+        if(possibleThreat.getName() == fearFactor) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
