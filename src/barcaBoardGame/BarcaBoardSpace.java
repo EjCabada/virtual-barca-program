@@ -4,11 +4,11 @@ import java.awt.Point;
 
 public class BarcaBoardSpace extends Point{
 
-    final int MIN_BOARD_LENGTH = 1;
-    final int MIN_BOARD_WIDTH = 1;
+    final int MIN_BOARD_LENGTH = 0;
+    final int MIN_BOARD_WIDTH = 0;
 
-    final int MAX_BOARD_LENGTH = 10;
-    final int MAX_BOARD_WIDTH = 10;
+    final int MAX_BOARD_LENGTH = 9;
+    final int MAX_BOARD_WIDTH = 9;
 
     BarcaPiece occupyingPiece = null;
 
@@ -22,6 +22,22 @@ public class BarcaBoardSpace extends Point{
             throw new IndexOutOfBoundsException("You cannot create a space outside the board");
         }
 	}
+
+    /**
+     * Allows you to modify the piece currently occupying this space
+     * @param occupyingPiece A piece intended to occupy this space
+     */
+    public void setOccupyingPiece(BarcaPiece occupyingPiece) {
+        this.occupyingPiece = occupyingPiece;
+    }
+
+    /**
+     * This will get you the piece that is occupying this space or else it will return null
+     * @return The piece currently occupying this space
+     */
+    public BarcaPiece getOccupyingPiece() {
+        return occupyingPiece;
+    }
 
     /**
      * Changes the location of the coordinate relative to starting point

@@ -8,13 +8,11 @@ public class BarcaBoard {
 
 	private BarcaBoard() {
         board = new BarcaBoardSpace[10][10];
-        setBoard();
 	}
 
     public static BarcaBoard getInstance(){
         if(BarcaBoard.instance == null){
             instance = new BarcaBoard();
-            instance.setBoard();
         }
         return instance;
     }
