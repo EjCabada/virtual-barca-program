@@ -10,6 +10,10 @@ public class BarcaBoard {
         board = new BarcaBoardSpace[10][10];
 	}
 
+    /**
+     * Ensures that only one instance of this class ever gets created (Singleton pattern)
+     * @return The existing BarcaBoard object
+     */
     public static BarcaBoard getInstance(){
         if(BarcaBoard.instance == null){
             instance = new BarcaBoard();
@@ -28,11 +32,10 @@ public class BarcaBoard {
 			}
 		}
 		board[4][5].setOccupyingPiece(new LionPiece());
-        //TODO Make "mouse" into a const
 		board[4][4].setOccupyingPiece(new MousePiece());
 
 		//TODO If movement is not valid, catch the exception using try catch block and ask for input again
-		movePiece(new Point(0,0), new Point(0,9));
+//		movePiece(new Point(0,0), new Point(0,9));
 	}
 	
 	/**
@@ -76,43 +79,6 @@ public class BarcaBoard {
 		} else {
 			return false;
 		}
-	}
-
-	public ArrayList<Point> findAdjacentSpaces(Point startingPoint) {
-		int startingX = startingPoint.x;
-		int startingY = startingPoint.y;
-
-		Point rightOfStart = new Point(startingX++, startingY);
-		Point leftOfStart = new Point(startingX--, startingY);
-		Point topOfStart = new Point(startingX, startingY++);
-		Point bottomOfStart = new Point(startingX, startingY--);
-
-		Point topRightOfStart = new Point(startingX++, startingY--);
-		Point topLeftOfStart = new Point(startingX--, startingY--);
-		Point bottomRightOfStart = new Point(startingX++, startingY++);
-		Point bottomLeftOfStart = new Point(startingX--, startingY++);
-
-		final int TOTAL_POSSIBLE_ADJACENT = 8;
-		Point[] arr = new Point[TOTAL_POSSIBLE_ADJACENT];
-
-		arr[0] = rightOfStart;
-		arr[1] = leftOfStart;
-		arr[2] = topOfStart;
-		arr[3] = bottomOfStart;
-		arr[4] = topRightOfStart;
-		arr[5] = topLeftOfStart;
-		arr[6] = bottomRightOfStart;
-		arr[7] = bottomLeftOfStart;
-
-		ArrayList<Point> allPossibleAdjacentSpaces = new ArrayList<Point>();
-
-		for(int i = 0; i < TOTAL_POSSIBLE_ADJACENT;  i++) {
-			if(isWithinBounds(arr[i])) {
-				allPossibleAdjacentSpaces.add(arr[i]);
-			};
-		}
-
-		return allPossibleAdjacentSpaces;
 	}
 
     /**
