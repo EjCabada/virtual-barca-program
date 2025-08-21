@@ -3,7 +3,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class BarcaBoard {
-//	private static BarcaBoardSpace[][] board = null;
+	private static BarcaBoardSpace[][] board = null;
 	private static BarcaBoard instance;
 
 	private BarcaBoard() {
@@ -15,9 +15,8 @@ public class BarcaBoard {
         if(BarcaBoard.instance == null){
             instance = new BarcaBoard();
             instance.setBoard();
-        } else {
-            return instance;
         }
+        return instance;
     }
 	
 	/**
@@ -77,12 +76,10 @@ public class BarcaBoard {
 			return false;
 		}
 	}
-	
 
-	
-/**
- * Printing the board object will implicitly call this method
- */	
+    /**
+     * Printing the board object will implicitly call this method
+     */
 	public String toString() {
 		String string = "";
 		for(int i = 0; i < 10; i++) {
