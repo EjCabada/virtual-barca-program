@@ -21,10 +21,18 @@ public class BarcaBoard {
 		// Test move validation
 		// board[0][0].getOccupyingPiece().isValidMove(new Point(0,0), new Point(0,9));
 	}
-	
+
+    /**
+     * Prints the state of the game as a grid in the terminal
+     */
+    public void print() {
+        System.out.println(this);
+    }
+
 	/**
 	 * Printing the board object will implicitly call this method
-	 */	
+	 */
+    @Override
 	public String toString() {
 		String string = "";
 		for(int i = 0; i < 10; i++) {
