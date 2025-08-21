@@ -3,11 +3,19 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class BarcaBoard {
-	public static BarcaBoardSpace[][] board = new BarcaBoardSpace[10][10];
-	
-	public BarcaBoard() {
-		setBoard();
+	private static BarcaBoardSpace[][] board = null;
+	private static BarcaBoard instance;
+
+	private BarcaBoard() {
+        board = new BarcaBoardSpace[10][10];
 	}
+
+    public static BarcaBoard getInstance(){
+        if(BarcaBoard.instance == null){
+            instance = new BarcaBoard();
+        }
+        return instance;
+    }
 	
 	/**
 	 * Helper method to set the board to initial state
@@ -16,15 +24,17 @@ public class BarcaBoard {
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
                 // TODO Find a way to index the array starting at 1 instead of 0;
-				board[i][j] = new BarcaBoardSpace(new Point(i,j), false);
+				board[i][j] = new BarcaBoardSpace(i,j);
 			}
 		}
-		board[4][4].setOccupyingPiece(new MousePiece());
 		board[4][5].setOccupyingPiece(new LionPiece());
-		//TODO If movement is not valid, catch the exception using try catch block and ask for input again
-//		movePiece(new Point(0,0), new Point(0,9));
-	}
+        //TODO Make "mouse" into a const
+		board[4][4].setOccupyingPiece(new MousePiece());
 
+		//TODO If movement is not valid, catch the exception using try catch block and ask for input again
+		movePiece(new Point(0,0), new Point(0,9));
+	}
+	
 	/**
 	 * Changes board state by removing piece from one space and adding it to another space
 	 * @param from location of space containing piece intended to be moved
@@ -41,7 +51,7 @@ public class BarcaBoard {
 		} else {
 			System.out.println("Move was not valid!");
 		};
-
+		
 	}
 
 	//TODO resolve duplicate definition of method isWithinBounds()
