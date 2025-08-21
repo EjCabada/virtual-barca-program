@@ -15,12 +15,13 @@ public class BarcaBoard {
 	public void setBoard() {
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
+                // TODO Find a way to index the array starting at 1 instead of 0;
 				board[i][j] = new BarcaBoardSpace(new Point(i,j), false);
 			}
 		}
-		board[0][0].setOccupyingPiece(new MousePiece());
+		board[0][0].setOccupyingPiece(new MousePiece("mouse"));
 		//TODO If movement is not valid, catch the exception using try catch block and ask for input again
-		movePiece(new Point(0,0), new Point(0,10));
+		movePiece(new Point(0,0), new Point(0,9));
 	}
 	
 	/**
