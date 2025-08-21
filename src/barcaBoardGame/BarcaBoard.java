@@ -3,17 +3,20 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class BarcaBoard {
-	private static BarcaBoardSpace[][] board = null;
-	
+//	private static BarcaBoardSpace[][] board = null;
+	private static BarcaBoard instance;
+
 	private BarcaBoard() {
         board = new BarcaBoardSpace[10][10];
         setBoard();
 	}
 
-    public static BarcaBoardSpace[][] getInstance(){
-        if(BarcaBoard.board == null){
-            BarcaBoard = new BarcaBoard();
-            setBoard();
+    public static BarcaBoard getInstance(){
+        if(BarcaBoard.instance == null){
+            instance = new BarcaBoard();
+            instance.setBoard();
+        } else {
+            return instance;
         }
     }
 	
