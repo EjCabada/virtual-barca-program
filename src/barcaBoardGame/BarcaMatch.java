@@ -8,15 +8,14 @@ import static java.lang.System.exit;
 public class BarcaMatch {
 
     public static void main(String[] args) {
+        Display display = new Display();
+        Display.clearDisplay();
 
         BarcaBoard board = new BarcaBoard();
         board.setBoard();
 
         //welcome banner
-        System.out.println("**************************");
-        System.out.println("    WELCOME TO BARCA!    ");
-        System.out.println("**************************");
-        System.out.println();
+        Display.welcome();
 
         //added a start point to branch off to rules or to the gameloop depending on user familiarity of the game
         System.out.println("please type '-h' for rules else type 'start' to start game");
@@ -36,8 +35,10 @@ public class BarcaMatch {
             if (choice.equals("start")) {
                 gameLoop(board);
             } else if (choice.equals("-h")) {
-                gameRules();
+                Display.printRules(scnr);
                 gameLoop(board);
+            } else if (choice.equals("exit") || choice.equals("quit")) {
+                exit(0);
             } else {
                 System.out.println("Invalid choice, please try again:");
             }
@@ -46,9 +47,6 @@ public class BarcaMatch {
 
     //game loop
     private static void gameLoop(BarcaBoard board) {
-        System.out.println("**************************");
-        System.out.println("          New Game!       ");
-        System.out.println("**************************");
 
         //current Player is controlled by a simple int
         int currentPlayer = 1;
@@ -58,33 +56,30 @@ public class BarcaMatch {
         loop will run while the board reports that no user has control of 3 watering holes.
         wateringHoleWinner needs to be implemented still (for looping purpouses it currently ALWAYS return false)
          */
+        int turn = 1;
         while (board.wateringHoleWinner() == false) {
-            board.printBoard();
 
-            System.out.println("Player " + currentPlayer + "'s turn");
-            System.out.println("Please select a game piece to move via coordinate");
+            Display.clearDisplay();
+            Display.render(turn, currentPlayer, board);
+
+
+            Display.printTurnInstructions(currentPlayer);
+
             String coordinate = scnr.nextLine();
-            System.out.println(coordinate);
+            if (coordinate.equals("exit") || coordinate.equals("quit")) {
+                System.out.println("Thanks for playing!");
+                exit(0);
+            }
+            
             System.out.println(coordinate);
 
             //for readablilty purpouses player is controlled by turnery-op
             currentPlayer = (currentPlayer == 1) ? 2 : 1;
+            turn++;
         }
 
         //unsure if needed but will determine if the program exited with no problems
         exit(0);
-    }
-
-    private static void gameRules() {
-        System.out.println();
-        System.out.println("**************************");
-        System.out.println("           Rules:         ");
-        System.out.println("**************************");
-        //FIXME
-        System.out.println("FIXME: rules go here");
-        System.out.println("When you input a coordinate please follow the following format:");
-        System.out.println("\"x , y\", in otherwords 'x' <space> <comma> <space> 'y'");
-        System.out.println("Have fun! ;)");
     }
 
 }

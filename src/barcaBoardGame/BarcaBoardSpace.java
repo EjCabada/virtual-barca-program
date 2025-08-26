@@ -15,7 +15,7 @@ public class BarcaBoardSpace {
 	public void setOccupyingPiece(BarcaPiece piece) {
 		occupyingPiece = piece;
 	}
-	
+
 	public String toString(){
 		if(occupyingPiece == null) {
 			return " . ";
