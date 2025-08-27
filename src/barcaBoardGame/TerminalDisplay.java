@@ -2,21 +2,21 @@ package barcaBoardGame;
 
 import java.util.Scanner;
 
-public class Display {
-    public Display() {
+public class TerminalDisplay {
+    public TerminalDisplay() {
     }
 
-    public static void render(int turn, int player, BarcaBoard board) {
+    public void render(int turn, int player, BarcaBoard board) {
         System.out.println("Player " + player + "              turn: " + turn);
         System.out.println("█████████████████████████████");
         System.out.println();
-        board.printBoard();
+        board.printBoard(); //print board
         System.out.println();
         System.out.println("█████████████████████████████");
         System.out.println();
     }
 
-    public static void clearDisplay() {
+    public void clearDisplay() {
         /*
         WARNING DOES NOT WORK INSIDE INTELIJ TERMINAL
         IntelliJ does not use a real terminal, as such, terminal commands such as
@@ -26,14 +26,14 @@ public class Display {
         System.out.flush();
     }
 
-    public static void welcome() {
+    public void welcome() {
         System.out.println("█████████████████████████████");
         System.out.println("      WELCOME TO BARCA!      ");
         System.out.println("█████████████████████████████");
         System.out.println();
     }
 
-    public static void printRules(Scanner scnr) {
+    public void printRules(Scanner scnr) {
         clearDisplay();
         System.out.println("             Rules:           ");
         System.out.println("█████████████████████████████\n");
@@ -53,7 +53,7 @@ public class Display {
         } while (!choice.equals("start"));
     }
 
-    public static void printTurnInstructions(int currentPlayer) {
+    public void printTurnInstructions(int currentPlayer) {
         System.out.println("Player " + currentPlayer + "'s turn");
         System.out.println("Please select a game piece to move via coordinate");
     }
